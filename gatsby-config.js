@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Loan Calculator`,
+    description: `great looking loan calculator to easily evaluate loan options in real-time so that people can find a loan option that satisfies their financial requirements.`,
+    author: `@gabegreenfield`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
