@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react"
 interface FormProps {
   loanAmount: number
   onSubmitAmount: Function
+  loanTerm: number
+  onSubmitTerm: Function
 }
 
 const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
@@ -29,7 +31,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
 
   // The loan amount should be over 5k and less than 25 million, otherwise show an error on blur
   const checkIsValidAmount = (): void => {
-    if (props.loanAmount <= 5000 || props.loanAmount >= 25000000) {
+    if (props.loanAmount <= 5000 || props.loanAmount > 25000000) {
       setIsValidAmount(false)
     } else {
       setIsValidAmount(true)
@@ -38,22 +40,39 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
 
   return (
     <>
-      <label>
-        How much do you want to borrow?
-        <input
-          placeholder="Enter desired loan amount in USD"
-          type="tel"
-          maxLength={11}
-          value={`$${numberToCurrency(props.loanAmount)}`}
-          onChange={event => {
-            emitAmountHandler(event.target.value)
-          }}
-          onBlur={event => {
-            checkIsValidAmount()
-          }}
-        />
-        {!isValidAmount && <p>error message here</p>}
-      </label>
+      <div>
+        <label>
+          How much do you want to borrow?
+          <input
+            placeholder="Enter desired loan amount in USD"
+            type="tel"
+            maxLength={11}
+            value={`$${numberToCurrency(props.loanAmount)}`}
+            onChange={event => {
+              emitAmountHandler(event.target.value)
+            }}
+            onBlur={event => {
+              checkIsValidAmount()
+            }}
+          />
+          {!isValidAmount && <p>Must be between $5,000 and $25,000,000</p>}
+        </label>
+      </div>
+      <div>
+        <label>
+          How long do you need to pay back?
+          <input
+            type="range"
+            min="3"
+            max="36"
+            value={props.loanTerm}
+            onChange={event => {
+              props.onSubmitTerm(event.target.value)
+            }}
+          ></input>
+          <span>{props.loanTerm}</span>
+        </label>
+      </div>
     </>
   )
 }
