@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, JSXElementConstructor } from "react"
 
 interface FormProps {
   loanAmount: number
-  onSubmitAmount: Function
+  onSetAmount: Function
   loanTerm: number
-  onSubmitTerm: Function
+  onSetTerm: Function
+  loanLTV: string
+  onSetLTV: Function
 }
 
 const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
@@ -26,7 +28,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
     return amount
   }
   const emitAmountHandler = (amount): void => {
-    props.onSubmitAmount(currencyToNumber(amount))
+    props.onSetAmount(currencyToNumber(amount))
   }
 
   // The loan amount should be over 5k and less than 25 million, otherwise show an error on blur
@@ -38,6 +40,20 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
     }
   }
 
+  const radioOptionsLTV: Array<string> = ["30%", "40%", "50%", "60%", "70%"]
+  const radioInputsLTV = radioOptionsLTV.map(option => {
+    return (
+      <input
+        name="LTV"
+        type="radio"
+        value={option}
+        checked={props.loanLTV === option}
+        onChange={event => {
+          props.onSetLTV(event.target.value)
+        }}
+      />
+    )
+  })
   return (
     <>
       <div>
@@ -67,10 +83,17 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
             max="36"
             value={props.loanTerm}
             onChange={event => {
-              props.onSubmitTerm(event.target.value)
+              props.onSetTerm(event.target.value)
             }}
-          ></input>
+          />
           <span>{props.loanTerm}</span>
+        </label>
+      </div>
+      <div>
+        <label htmlFor="LTV">
+          Loan-to-Value (LTV)
+          {radioInputsLTV}
+          <span>{props.loanLTV}</span>
         </label>
       </div>
     </>
