@@ -12,7 +12,6 @@ const LoanCalculator: React.FC = () => {
   return (
     <section>
       <h2>Loan Calculator</h2>
-      <CalculatorDetails />
       <CalculatorForm
         loanAmount={loanAmount}
         onSetAmount={setLoanAmount}
@@ -22,6 +21,12 @@ const LoanCalculator: React.FC = () => {
         onSetLTV={setLoanLTV}
         loanRepaymentOption={loanRepaymentOption}
         onSetRepaymentOption={setLoanRepaymentOption}
+      />
+      <CalculatorDetails
+        loanAmount={loanAmount}
+        loanTerm={loanTerm}
+        loanLTV={loanLTV}
+        loanRepaymentOption={loanRepaymentOption}
       />
     </section>
   )

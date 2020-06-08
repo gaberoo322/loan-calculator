@@ -1,4 +1,4 @@
-import React, { useState, useEffect, JSXElementConstructor } from "react"
+import React, { useState } from "react"
 
 interface FormProps {
   loanAmount: number
