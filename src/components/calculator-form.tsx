@@ -7,6 +7,8 @@ interface FormProps {
   onSetTerm: Function
   loanLTV: string
   onSetLTV: Function
+  loanRepaymentOption: string
+  onSetRepaymentOption: Function
 }
 
 const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
@@ -54,6 +56,22 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
       />
     )
   })
+
+  const radioOptionsRepayment: Array<string> = ["IO", "PI"]
+  const radioInputsRepayment = radioOptionsRepayment.map(option => {
+    return (
+      <input
+        name="RepaymentOptions"
+        type="radio"
+        value={option}
+        checked={props.loanRepaymentOption === option}
+        onChange={event => {
+          props.onSetRepaymentOption(event.target.value)
+        }}
+      />
+    )
+  })
+
   return (
     <>
       <div>
@@ -94,6 +112,13 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
           Loan-to-Value (LTV)
           {radioInputsLTV}
           <span>{props.loanLTV}</span>
+        </label>
+      </div>
+      <div>
+        <label htmlFor="RepaymentOptions">
+          Repayment Option
+          {radioInputsRepayment}
+          <span>{props.loanRepaymentOption}</span>
         </label>
       </div>
     </>
