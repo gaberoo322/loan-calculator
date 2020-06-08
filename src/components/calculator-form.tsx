@@ -5,7 +5,7 @@ interface FormProps {
   onSetAmount: Function
   loanTerm: number
   onSetTerm: Function
-  loanLTV: string
+  loanLTV: number
   onSetLTV: Function
   loanRepaymentOption: string
   onSetRepaymentOption: Function
@@ -42,7 +42,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
     }
   }
 
-  const radioOptionsLTV: Array<string> = ["30%", "40%", "50%", "60%", "70%"]
+  const radioOptionsLTV: Array<number> = [3, 4, 5, 6, 7]
   const radioInputsLTV = radioOptionsLTV.map(option => {
     return (
       <input
@@ -51,7 +51,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
         value={option}
         checked={props.loanLTV === option}
         onChange={event => {
-          props.onSetLTV(event.target.value)
+          props.onSetLTV(parseInt(event.target.value))
         }}
       />
     )

@@ -5,9 +5,9 @@ import CalculatorDetails from "../components/calculator-details"
 
 const LoanCalculator: React.FC = () => {
   console.log("LOAN-CALCULATOR-RENDER")
-  const [loanAmount, setLoanAmount] = useState(0)
+  const [loanAmount, setLoanAmount] = useState(5000)
   const [loanTerm, setLoanTerm] = useState(12)
-  const [loanLTV, setLoanLTV] = useState("60%")
+  const [loanLTV, setLoanLTV] = useState(6)
   const [loanRepaymentOption, setLoanRepaymentOption] = useState("IO")
   return (
     <section>
