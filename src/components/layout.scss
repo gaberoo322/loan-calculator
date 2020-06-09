@@ -1,5 +1,5 @@
 html {
-  font-family: Europa, sans-serif;
+  font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -200,7 +200,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  font-family: sans-serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -622,14 +622,17 @@ pre tt:after {
 }
 
 //custom styles beloow this coment
-@import url(//db.onlinewebfonts.com/c/23c0fcab84d99da0de762de7e220a6e1?family=Europa);
-
 $primary-color: #28283d;
 $secondary-color: #00ffc3;
+$error-color: #eb6f5a;
 
 body {
   background-color: $primary-color;
   color: white;
+}
+
+.error-text {
+  color: $error-color;
 }
 
 .loan-calculator {
@@ -637,7 +640,8 @@ body {
   h1 {
     text-align: center;
     width: 100%;
-    font-size: 3rem;
+    font-size: 3.5rem;
+    padding: 15px;
   }
 }
 
@@ -653,13 +657,42 @@ body {
 .calculator-details {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex: 0 1 550px;
-  padding: 0 50px;
+  padding: 50px;
 }
 
 .calculator-form {
   border: 1px solid #fff;
+
+  .label {
+    font-size: 22px;
+  }
+
+  .input {
+    margin: 15px 0;
+    background-color: -internal-light-dark-color(
+      rgb(255, 255, 255),
+      rgb(59, 59, 59)
+    );
+    cursor: text;
+    border-color: -internal-light-dark-color(
+      rgb(118, 118, 118),
+      rgb(195, 195, 195)
+    );
+
+    &[type="tel"] {
+      border-radius: 2px;
+      box-shadow: 0 0 1rem 0 $primary-color;
+      border: 1px solid #fff;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 5px;
+      color: #fff;
+      height: 50px;
+      padding: 0 15px;
+      width: 100%;
+    }
+  }
 }
 
 .calculator-details {

@@ -47,6 +47,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
     return (
       <input
         key={option}
+        className="input"
         name="LTV"
         type="radio"
         value={option}
@@ -76,9 +77,10 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
 
   return (
     <section className="calculator-form">
-      <label>
+      <label className="label">
         How much do you want to borrow?
         <input
+          className="input"
           placeholder="Enter desired loan amount in USD"
           type="tel"
           maxLength={11}
@@ -90,12 +92,17 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
             checkIsValidAmount()
           }}
         />
-        {!isValidAmount && <p>Must be between $5,000 and $25,000,000</p>}
+        {!isValidAmount && (
+          <span className="error-text">
+            Must be between $5,000 and $25,000,000
+          </span>
+        )}
       </label>
 
-      <label>
+      <label className="label">
         How long do you need to pay back?
         <input
+          className="input"
           type="range"
           min="3"
           max="36"
@@ -107,12 +114,12 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
         <span>{props.loanTerm}</span>
       </label>
 
-      <label htmlFor="LTV">
+      <label className="label" htmlFor="LTV">
         Loan-to-Value (LTV)
         {radioInputsLTV}
         <span>{props.loanLTV}</span>
       </label>
-      <label htmlFor="RepaymentOptions">
+      <label className="label" htmlFor="RepaymentOptions">
         Repayment Option
         {radioInputsRepayment}
         <span>{props.loanRepaymentOption}</span>
