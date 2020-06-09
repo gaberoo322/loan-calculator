@@ -109,9 +109,9 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
           }}
         />
         {!isValidAmount && (
-          <span className="error-text">
+          <div className="error-text">
             Must be between $5,000 and $25,000,000
-          </span>
+          </div>
         )}
       </label>
 
