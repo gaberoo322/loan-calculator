@@ -5,6 +5,7 @@ import IconLTC from "cryptocurrency-icons/svg/color/ltc.svg"
 import IconDASH from "cryptocurrency-icons/svg/color/dash.svg"
 import IconDOGE from "cryptocurrency-icons/svg/color/doge.svg"
 import IconETH from "cryptocurrency-icons/svg/color/eth.svg"
+import IconSALT from "cryptocurrency-icons/svg/color/salt.svg"
 
 interface FormProps {
   loanAmount: number
@@ -63,11 +64,12 @@ const CalculatorDetails: React.FC<FormProps> = (props: FormProps) => {
     dogecoin: { usd: 0 },
     ethereum: { usd: 0 },
     litecoin: { usd: 0 },
+    salt: { usd: 0 },
   })
 
   useEffect(() => {
     const coinIdParams: string = encodeURIComponent(
-      "bitcoin,litecoin,dash,dogecoin,ethereum"
+      "bitcoin,litecoin,dash,dogecoin,ethereum,salt"
     )
     const currencyTypeParams = "usd"
 
@@ -83,7 +85,7 @@ const CalculatorDetails: React.FC<FormProps> = (props: FormProps) => {
         console.error(error)
         return {}
       })
-  }, [props.loanAmount])
+  }, [])
 
   return (
     <section className="calculator-details">
@@ -135,6 +137,10 @@ const CalculatorDetails: React.FC<FormProps> = (props: FormProps) => {
         <div className="coin--wrapper">
           <img className="coin--icon" src={IconETH} alt="Ethereum Icon" />
           <span>{`${formatCoinAmount(coinPrices.dogecoin.usd)} DOGE`}</span>
+        </div>
+        <div className="coin--wrapper">
+          <img className="coin--icon" src={IconSALT} alt="Ethereum Icon" />
+          <span>{`${formatCoinAmount(coinPrices.salt.usd)} SALT`}</span>
         </div>
       </div>
     </section>
