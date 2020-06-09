@@ -633,7 +633,7 @@ body {
 }
 
 .loan-calculator {
-  margin-top: 10vh;
+  margin: 10vh 5vw;
   h1 {
     text-align: center;
     width: 100%;
@@ -643,6 +643,27 @@ body {
 
 .loan-calculator--wrapper {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  margin: 0 auto;
+}
+
+.calculator-form,
+.calculator-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex: 0 1 550px;
+  padding: 0 50px;
+}
+
+.calculator-form {
+  border: 1px solid #fff;
+}
+
+.calculator-details {
+  border: 1px solid $secondary-color;
+  background-color: $secondary-color;
+  color: $primary-color;
 }

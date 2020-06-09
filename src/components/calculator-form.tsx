@@ -75,7 +75,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
   })
 
   return (
-    <section>
+    <section className="calculator-form">
       <div>
         <label>
           How much do you want to borrow?
