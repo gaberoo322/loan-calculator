@@ -672,11 +672,11 @@ body {
   .input {
     margin: 15px 0;
     font-weight: 600;
+    cursor: text;
     background-color: -internal-light-dark-color(
       rgb(255, 255, 255),
       rgb(59, 59, 59)
     );
-    cursor: text;
     border-color: -internal-light-dark-color(
       rgb(118, 118, 118),
       rgb(195, 195, 195)
@@ -706,6 +706,27 @@ body {
       &:focus {
         outline: none;
       }
+    }
+  }
+
+  .radio-btn-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    .radio-btn--hide {
+      position: absolute;
+      visibility: hidden;
+    }
+    .radio-btn--wrapper {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #fff;
+    }
+
+    input[type="radio"]:checked ~ .radio-btn {
+      color: $secondary-color;
+      cursor: pointer;
     }
   }
 

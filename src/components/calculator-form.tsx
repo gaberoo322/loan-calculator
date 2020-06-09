@@ -45,33 +45,42 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
   const radioOptionsLTV: Array<number> = [3, 4, 5, 6, 7]
   const radioInputsLTV = radioOptionsLTV.map(option => {
     return (
-      <input
-        key={option}
-        className="input"
-        name="LTV"
-        type="radio"
-        value={option}
-        checked={props.loanLTV === option}
-        onChange={event => {
-          props.onSetLTV(parseInt(event.target.value))
-        }}
-      />
+      <div key={option} className="radio-btn--wrapper">
+        <input
+          className="input radio-btn--hide"
+          id={`${option}`}
+          type="radio"
+          value={option}
+          checked={props.loanLTV === option}
+          onChange={event => {
+            props.onSetLTV(parseInt(event.target.value))
+          }}
+        />
+        <label className="radio-btn" htmlFor={`${option}`}>
+          {`${option}0%`}
+        </label>
+      </div>
     )
   })
 
   const radioOptionsRepayment: Array<string> = ["IO", "PI"]
   const radioInputsRepayment = radioOptionsRepayment.map(option => {
     return (
-      <input
-        key={option}
-        name="RepaymentOptions"
-        type="radio"
-        value={option}
-        checked={props.loanRepaymentOption === option}
-        onChange={event => {
-          props.onSetRepaymentOption(event.target.value)
-        }}
-      />
+      <div key={option} className="radio-btn--wrapper">
+        <input
+          className="input radio-btn--hide"
+          id={option}
+          type="radio"
+          value={option}
+          checked={props.loanRepaymentOption === option}
+          onChange={event => {
+            props.onSetRepaymentOption(event.target.value)
+          }}
+        />
+        <label className="radio-btn" htmlFor={option}>
+          {option === "IO" ? "Interest Only" : "Principal & Interest"}
+        </label>
+      </div>
     )
   })
 
@@ -116,13 +125,11 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
 
       <label className="label" htmlFor="LTV">
         Loan-to-Value (LTV)
-        {radioInputsLTV}
-        <span>{props.loanLTV}</span>
+        <div className="radio-btn-list">{radioInputsLTV}</div>
       </label>
       <label className="label" htmlFor="RepaymentOptions">
         Repayment Option
-        {radioInputsRepayment}
-        <span>{props.loanRepaymentOption}</span>
+        <div className="radio-btn-list">{radioInputsRepayment}</div>
       </label>
     </section>
   )
