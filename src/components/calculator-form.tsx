@@ -111,7 +111,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
             props.onSetTerm(event.target.value)
           }}
         />
-        <span>{props.loanTerm}</span>
+        <div className="input-value-text">{props.loanTerm}</div>
       </label>
 
       <label className="label" htmlFor="LTV">

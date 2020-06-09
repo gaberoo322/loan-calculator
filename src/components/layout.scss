@@ -671,6 +671,7 @@ body {
 
   .input {
     margin: 15px 0;
+    font-weight: 600;
     background-color: -internal-light-dark-color(
       rgb(255, 255, 255),
       rgb(59, 59, 59)
@@ -692,6 +693,26 @@ body {
       padding: 0 15px;
       width: 100%;
     }
+
+    &[type="range"] {
+      -webkit-appearance: none;
+      padding: 0;
+      width: 100%;
+      background: white;
+      border-radius: 8px;
+      height: 1px;
+      cursor: pointer;
+      width: 100%;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .input-value-text {
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
   }
 }
 
