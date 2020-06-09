@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 interface FormProps {
   loanAmount: number
@@ -13,6 +13,7 @@ interface FormProps {
 
 const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
   const [isValidAmount, setIsValidAmount] = useState(true)
+  const [isAmountDirty, setIsAmountDirty] = useState(false)
 
   const numberToCurrency = (number: number): string => {
     return `$${new Intl.NumberFormat("en", {
@@ -30,23 +31,28 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
     return amount
   }
 
+  useEffect((): Boolean => {
+    let isValid = true
+    if (isAmountDirty) {
+      if (props.loanAmount < 5000 || props.loanAmount > 25000000) {
+        isValid = false
+      } else {
+        isValid = true
+      }
+    }
+    setIsValidAmount(isValid)
+  }, [props.loanAmount, isAmountDirty])
+
   const emitAmountHandler = (amount): void => {
     props.onSetAmount(currencyToNumber(amount))
-  }
-
-  const checkIsValidAmount = (): void => {
-    if (props.loanAmount <= 5000 || props.loanAmount > 25000000) {
-      setIsValidAmount(false)
-    } else {
-      setIsValidAmount(true)
-    }
   }
 
   const radioOptionsLTV: Array<number> = [3, 4, 5, 6, 7]
   const radioInputsLTV = radioOptionsLTV.map(option => {
     return (
-      <div key={option} className="radio-btn--wrapper">
+      <span key={option} className="radio-btn--wrapper">
         <input
+          tabIndex={0}
           className="input radio-btn--hide"
           id={`${option}`}
           type="radio"
@@ -59,15 +65,16 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
         <label className="radio-btn" htmlFor={`${option}`}>
           {`${option}0%`}
         </label>
-      </div>
+      </span>
     )
   })
 
   const radioOptionsRepayment: Array<string> = ["IO", "PI"]
   const radioInputsRepayment = radioOptionsRepayment.map(option => {
     return (
-      <div key={option} className="radio-btn--wrapper">
+      <span key={option} className="radio-btn--wrapper">
         <input
+          tabIndex={0}
           className="input radio-btn--hide"
           id={option}
           type="radio"
@@ -80,7 +87,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
         <label className="radio-btn" htmlFor={option}>
           {option === "IO" ? "Interest Only" : "Principal & Interest"}
         </label>
-      </div>
+      </span>
     )
   })
 
@@ -98,7 +105,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
             emitAmountHandler(event.target.value)
           }}
           onBlur={event => {
-            checkIsValidAmount()
+            setIsAmountDirty(true)
           }}
         />
         {!isValidAmount && (
