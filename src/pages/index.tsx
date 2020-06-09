@@ -7,7 +7,7 @@ import LoanCalculator from "../components/loan-calculator"
 
 const IndexPage: React.FC<PageProps> = () => (
   <Layout>
-    <SEO title="Home" />
+    <SEO title="Index" />
     <LoanCalculator />
   </Layout>
 )
