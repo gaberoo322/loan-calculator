@@ -633,6 +633,8 @@ body {
 
 .error-text {
   color: $error-color;
+  margin-bottom: 15px;
+  margin-top: -10px;
 }
 
 .loan-calculator {
@@ -692,6 +694,9 @@ body {
       height: 50px;
       padding: 0 15px;
       width: 100%;
+      &:focus {
+        outline: none;
+      }
     }
 
     &[type="range"] {
@@ -718,6 +723,7 @@ body {
       position: absolute;
       visibility: hidden;
     }
+
     .radio-btn--wrapper {
       margin: 10px 0;
       padding: 10px;
@@ -739,14 +745,33 @@ body {
 }
 
 .calculator-details {
+  display: flex;
+  flex-wrap: wrap;
   border: 1px solid $secondary-color;
   background-color: $secondary-color;
   color: $primary-color;
 
+  .text-label--group {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .text-label--wrapper {
     display: flex;
     flex-direction: column;
-    flex-basis: 100%;
+    flex: 1 100px;
+    .text-label--label {
+      font-size: 20px;
+    }
+    .text-label--value {
+      font-size: 26px;
+      font-weight: 600;
+      &-big {
+        font-size: 48px;
+        font-weight: 700;
+        line-height: normal;
+      }
+    }
   }
 
   .coin--list {
@@ -762,9 +787,12 @@ body {
       flex-wrap: wrap;
       flex: 1 40%;
       .coin--icon {
-        margin-bottom: 0;
+        margin: 10px 0;
       }
       .coin--price {
+        margin: 10px 5px;
+        font-size: 14px;
+        font-weight: 500;
       }
     }
   }

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
 
-import IconBTC from "cryptocurrency-icons/svg/color/btc.svg"
-import IconLTC from "cryptocurrency-icons/svg/color/ltc.svg"
-import IconDASH from "cryptocurrency-icons/svg/color/dash.svg"
-import IconDOGE from "cryptocurrency-icons/svg/color/doge.svg"
-import IconETH from "cryptocurrency-icons/svg/color/eth.svg"
-import IconSALT from "cryptocurrency-icons/svg/color/salt.svg"
+import IconBTC from "cryptocurrency-icons/svg/black/btc.svg"
+import IconLTC from "cryptocurrency-icons/svg/black/ltc.svg"
+import IconDASH from "cryptocurrency-icons/svg/black/dash.svg"
+import IconDOGE from "cryptocurrency-icons/svg/black/doge.svg"
+import IconETH from "cryptocurrency-icons/svg/black/eth.svg"
+import IconSALT from "cryptocurrency-icons/svg/black/salt.svg"
 
 interface FormProps {
   loanAmount: number
@@ -90,57 +90,83 @@ const CalculatorDetails: React.FC<FormProps> = (props: FormProps) => {
   return (
     <section className="calculator-details">
       <div className="text-label--wrapper">
-        <div className="label text-label--label ">
+        <div className="text-label--label ">
           Monthly Payment ({props.loanTerm} months)
         </div>
-        <div className="text-label--value">
+        <div className="text-label--value text-label--value-big">
           {numberToCurrency(monthlyPaymentAmount())}
         </div>
       </div>
-      <div className="text-label--wrapper">
-        <div>Loan Amount</div>
-        <div>{numberToCurrency(props.loanAmount)}</div>
+      <div className="text-label--group">
+        <div className="text-label--wrapper">
+          <div className="text-label--label">Loan Amount</div>
+          <div className="text-label--value">
+            {numberToCurrency(props.loanAmount)}
+          </div>
+        </div>
+        <div className="text-label--wrapper">
+          <div className="text-label--label">APR</div>
+          <div className="text-label--value">{`${(
+            loanInterestAPR() * 100
+          ).toFixed(2)}%`}</div>
+        </div>
+      </div>
+      <div className="text-label--group">
+        <div className="text-label--wrapper">
+          <div className="text-label--label">Total Loan Cost</div>
+          <div className="text-label--value">
+            {numberToCurrency(totalAmountDue())}
+          </div>
+        </div>
+        <div className="text-label--wrapper">
+          <div className="text-label--label">Interest</div>
+          <div className="text-label--value">
+            {numberToCurrency(totalAmountDue() - props.loanAmount)}
+          </div>
+        </div>
       </div>
       <div className="text-label--wrapper">
-        <div>APR</div>
-        <div>{`${(loanInterestAPR() * 100).toFixed(2)}%`}</div>
-      </div>
-      <div className="text-label--wrapper">
-        <div>Total Loan Cost</div>
-        <div>{numberToCurrency(totalAmountDue())}</div>
-      </div>
-      <div className="text-label--wrapper">
-        <div>Interest</div>
-        <div>{numberToCurrency(totalAmountDue() - props.loanAmount)}</div>
-      </div>
-      <div className="text-label--wrapper">
-        <div>Collateral Needed</div>
-        <div>{numberToCurrency(props.loanAmount / props.loanLTV)}</div>
+        <div className="text-label--label">Collateral Needed</div>
+        <div className="text-label--value">
+          {`${numberToCurrency(props.loanAmount / props.loanLTV)} worth of:`}
+        </div>
       </div>
       <div className="coin--list">
         <div className="coin--wrapper">
           <img className="coin--icon" src={IconBTC} alt="Bitcoin Icon" />
-          <span>{`${formatCoinAmount(coinPrices.bitcoin.usd)} BTC`}</span>
+          <span className="coin--price">{`${formatCoinAmount(
+            coinPrices.bitcoin.usd
+          )} BTC`}</span>
         </div>
         <div className="coin--wrapper">
           <img className="coin--icon" src={IconLTC} alt="Litecoin Icon" />
-          <span>{`${formatCoinAmount(coinPrices.litecoin.usd)} LTC`}</span>
+          <span className="coin--price">{`${formatCoinAmount(
+            coinPrices.litecoin.usd
+          )} LTC`}</span>
         </div>
         <div className="coin--wrapper">
           <img className="coin--icon" src={IconDASH} alt="Dash Icon" />
-          <span>{`${formatCoinAmount(coinPrices.dash.usd)} DASH`}</span>
+          <span className="coin--price">{`${formatCoinAmount(
+            coinPrices.dash.usd
+          )} DASH`}</span>
         </div>
         <div className="coin--wrapper">
           <img className="coin--icon" src={IconDOGE} alt="Doge Icon" />
-          <span>{`${formatCoinAmount(coinPrices.dogecoin.usd)} DOGE`}</span>
+          <span className="coin--price">{`${formatCoinAmount(
+            coinPrices.dogecoin.usd
+          )} DOGE`}</span>
         </div>
         <div className="coin--wrapper">
           <img className="coin--icon" src={IconETH} alt="Ethereum Icon" />
-          <span>{`${formatCoinAmount(coinPrices.dogecoin.usd)} DOGE`}</span>
+          <span className="coin--price">{`${formatCoinAmount(
+            coinPrices.dogecoin.usd
+          )} ETH`}</span>
         </div>
         <div className="coin--wrapper">
           <img className="coin--icon" src={IconSALT} alt="Ethereum Icon" />
-          <span>{`${formatCoinAmount(coinPrices.salt.usd)} SALT`}</span>
+          <span className="coin--price">{`${formatCoinAmount(
+            coinPrices.salt.usd
+          )} SALT`}</span>
         </div>
       </div>
     </section>
