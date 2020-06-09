@@ -750,16 +750,18 @@ body {
   border: 1px solid $secondary-color;
   background-color: $secondary-color;
   color: $primary-color;
+  justify-content: space-between;
 
   .text-label--group {
     display: flex;
     justify-content: space-between;
+    flex: 1 10vh;
   }
 
   .text-label--wrapper {
     display: flex;
     flex-direction: column;
-    flex: 1 100px;
+    flex: 1 10vh;
     .text-label--label {
       font-size: 20px;
     }
