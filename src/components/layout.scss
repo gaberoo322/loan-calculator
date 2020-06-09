@@ -1,5 +1,5 @@
 html {
-  font-family: sans-serif;
+  font-family: Europa, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -619,4 +619,15 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+//custom styles beloow this coment
+@import url(//db.onlinewebfonts.com/c/23c0fcab84d99da0de762de7e220a6e1?family=Europa);
+
+$primary-color: #28283d;
+$secondary-color: #00ffc3;
+
+body {
+  background-color: $primary-color;
+  color: white;
 }
