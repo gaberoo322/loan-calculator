@@ -12,28 +12,28 @@ interface FormProps {
 }
 
 const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
-  console.log("LOAN-FORM-RENDER")
   const [isValidAmount, setIsValidAmount] = useState(true)
 
-  // component amount input logic
   const numberToCurrency = (number: number): string => {
-    return `${new Intl.NumberFormat().format(number)}`
+    return `$${new Intl.NumberFormat("en", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(number)}`
   }
+
   const currencyToNumber = (val: string): number => {
     let numberString: string = val.replace("$", "")
     numberString = numberString.replace(",", "").replace(",", "")
-    console.log(numberString)
-    console.log(parseInt(numberString))
     const amount: number = isNaN(parseInt(numberString))
       ? 0
       : parseInt(numberString)
     return amount
   }
+
   const emitAmountHandler = (amount): void => {
     props.onSetAmount(currencyToNumber(amount))
   }
 
-  // The loan amount should be over 5k and less than 25 million, otherwise show an error on blur
   const checkIsValidAmount = (): void => {
     if (props.loanAmount <= 5000 || props.loanAmount > 25000000) {
       setIsValidAmount(false)
@@ -46,6 +46,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
   const radioInputsLTV = radioOptionsLTV.map(option => {
     return (
       <input
+        key={option}
         name="LTV"
         type="radio"
         value={option}
@@ -61,6 +62,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
   const radioInputsRepayment = radioOptionsRepayment.map(option => {
     return (
       <input
+        key={option}
         name="RepaymentOptions"
         type="radio"
         value={option}
@@ -73,7 +75,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
   })
 
   return (
-    <>
+    <section>
       <div>
         <label>
           How much do you want to borrow?
@@ -81,7 +83,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
             placeholder="Enter desired loan amount in USD"
             type="tel"
             maxLength={11}
-            value={`$${numberToCurrency(props.loanAmount)}`}
+            value={`${numberToCurrency(props.loanAmount)}`}
             onChange={event => {
               emitAmountHandler(event.target.value)
             }}
@@ -121,7 +123,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
           <span>{props.loanRepaymentOption}</span>
         </label>
       </div>
-    </>
+    </section>
   )
 }
 
