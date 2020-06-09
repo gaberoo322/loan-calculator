@@ -50,14 +50,16 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
   const radioOptionsLTV: Array<number> = [3, 4, 5, 6, 7]
   const radioInputsLTV = radioOptionsLTV.map(option => {
     return (
-      <span key={option} className="radio-btn--wrapper">
+      <div role="radiogroup" key={option} className="radio-btn--wrapper">
         <input
-          tabIndex={0}
+          tabIndex={option === 3 ? 0 : -1}
           className="input radio-btn--hide"
           id={`${option}`}
           type="radio"
+          role="radio"
           value={option}
           checked={props.loanLTV === option}
+          aria-checked={props.loanLTV === option}
           onChange={event => {
             props.onSetLTV(parseInt(event.target.value))
           }}
@@ -65,16 +67,16 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
         <label className="radio-btn" htmlFor={`${option}`}>
           {`${option}0%`}
         </label>
-      </span>
+      </div>
     )
   })
 
   const radioOptionsRepayment: Array<string> = ["IO", "PI"]
   const radioInputsRepayment = radioOptionsRepayment.map(option => {
     return (
-      <span key={option} className="radio-btn--wrapper">
+      <div role="radiogroup" key={option} className="radio-btn--wrapper">
         <input
-          tabIndex={0}
+          tabIndex={option === "IO" ? 0 : -1}
           className="input radio-btn--hide"
           id={option}
           type="radio"
@@ -87,7 +89,7 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
         <label className="radio-btn" htmlFor={option}>
           {option === "IO" ? "Interest Only" : "Principal & Interest"}
         </label>
-      </span>
+      </div>
     )
   })
 
@@ -130,11 +132,12 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
         <div className="input-value-text">{props.loanTerm}</div>
       </label>
 
-      <label className="label" htmlFor="LTV">
+      <label className="label">
         Loan-to-Value (LTV)
         <div className="radio-btn-list">{radioInputsLTV}</div>
       </label>
-      <label className="label" htmlFor="RepaymentOptions">
+
+      <label className="label">
         Repayment Option
         <div className="radio-btn-list">{radioInputsRepayment}</div>
       </label>

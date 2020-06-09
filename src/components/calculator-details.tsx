@@ -78,7 +78,6 @@ const CalculatorDetails: React.FC<FormProps> = (props: FormProps) => {
     )
       .then(response => response.json())
       .then(response => {
-        console.log(response)
         setCoinPrices(response)
       })
       .catch(error => {

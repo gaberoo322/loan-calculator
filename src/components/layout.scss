@@ -638,7 +638,7 @@ body {
 }
 
 .loan-calculator {
-  margin: 10vh 5vw;
+  margin: 5vh 5vw 0 5vw;
   h1 {
     text-align: center;
     width: 100%;
@@ -721,7 +721,7 @@ body {
     text-align: center;
     .radio-btn--hide {
       position: absolute;
-      visibility: hidden;
+      left: 1000000000px;
     }
 
     .radio-btn--wrapper {
