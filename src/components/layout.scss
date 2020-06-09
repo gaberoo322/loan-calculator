@@ -631,3 +631,18 @@ body {
   background-color: $primary-color;
   color: white;
 }
+
+.loan-calculator {
+  margin-top: 10vh;
+  h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 3rem;
+  }
+}
+
+.loan-calculator--wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
