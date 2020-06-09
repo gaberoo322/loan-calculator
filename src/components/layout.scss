@@ -721,7 +721,7 @@ body {
     text-align: center;
     .radio-btn--hide {
       position: absolute;
-      left: 1000000000px;
+      visibility: hidden;
     }
 
     .radio-btn--wrapper {
