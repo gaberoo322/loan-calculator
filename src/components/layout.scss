@@ -722,6 +722,7 @@ body {
       margin: 10px 0;
       padding: 10px;
       border: 1px solid #fff;
+      border-radius: 2px;
     }
 
     input[type="radio"]:checked ~ .radio-btn {
@@ -741,4 +742,30 @@ body {
   border: 1px solid $secondary-color;
   background-color: $secondary-color;
   color: $primary-color;
+
+  .text-label--wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+  }
+
+  .coin--list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .coin--wrapper {
+      display: flex;
+      align-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      flex: 1 40%;
+      .coin--icon {
+        margin-bottom: 0;
+      }
+      .coin--price {
+      }
+    }
+  }
 }
