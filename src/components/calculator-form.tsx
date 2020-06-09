@@ -76,53 +76,47 @@ const CalculatorForm: React.FC<FormProps> = (props: FormProps) => {
 
   return (
     <section className="calculator-form">
-      <div>
-        <label>
-          How much do you want to borrow?
-          <input
-            placeholder="Enter desired loan amount in USD"
-            type="tel"
-            maxLength={11}
-            value={`${numberToCurrency(props.loanAmount)}`}
-            onChange={event => {
-              emitAmountHandler(event.target.value)
-            }}
-            onBlur={event => {
-              checkIsValidAmount()
-            }}
-          />
-          {!isValidAmount && <p>Must be between $5,000 and $25,000,000</p>}
-        </label>
-      </div>
-      <div>
-        <label>
-          How long do you need to pay back?
-          <input
-            type="range"
-            min="3"
-            max="36"
-            value={props.loanTerm}
-            onChange={event => {
-              props.onSetTerm(event.target.value)
-            }}
-          />
-          <span>{props.loanTerm}</span>
-        </label>
-      </div>
-      <div>
-        <label htmlFor="LTV">
-          Loan-to-Value (LTV)
-          {radioInputsLTV}
-          <span>{props.loanLTV}</span>
-        </label>
-      </div>
-      <div>
-        <label htmlFor="RepaymentOptions">
-          Repayment Option
-          {radioInputsRepayment}
-          <span>{props.loanRepaymentOption}</span>
-        </label>
-      </div>
+      <label>
+        How much do you want to borrow?
+        <input
+          placeholder="Enter desired loan amount in USD"
+          type="tel"
+          maxLength={11}
+          value={`${numberToCurrency(props.loanAmount)}`}
+          onChange={event => {
+            emitAmountHandler(event.target.value)
+          }}
+          onBlur={event => {
+            checkIsValidAmount()
+          }}
+        />
+        {!isValidAmount && <p>Must be between $5,000 and $25,000,000</p>}
+      </label>
+
+      <label>
+        How long do you need to pay back?
+        <input
+          type="range"
+          min="3"
+          max="36"
+          value={props.loanTerm}
+          onChange={event => {
+            props.onSetTerm(event.target.value)
+          }}
+        />
+        <span>{props.loanTerm}</span>
+      </label>
+
+      <label htmlFor="LTV">
+        Loan-to-Value (LTV)
+        {radioInputsLTV}
+        <span>{props.loanLTV}</span>
+      </label>
+      <label htmlFor="RepaymentOptions">
+        Repayment Option
+        {radioInputsRepayment}
+        <span>{props.loanRepaymentOption}</span>
+      </label>
     </section>
   )
 }
